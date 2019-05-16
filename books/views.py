@@ -5,32 +5,29 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from books.forms import BookForm, AuthorForm
 from books.models import Book, Author
-from bootstrap_modal_forms.generic import (BSModalCreateView,
-                                           BSModalUpdateView,
-                                           BSModalReadView,
-                                           BSModalDeleteView)
+from bootstrap_modal_forms.generic import BSModalCreateView, BSModalUpdateView, BSModalReadView, BSModalDeleteView
 
 class BookList(ListView):
     model = Book
 
 
-class BookView(DetailView):
+class BookView(BSModalReadView):
     model = Book
 
 
-class BookCreate(CreateView):
-    model = Book
-    form_class = BookForm
-    success_url = reverse_lazy('book_list')
-
-
-class BookUpdate(UpdateView):
+class BookCreate(BSModalCreateView):
     model = Book
     form_class = BookForm
     success_url = reverse_lazy('book_list')
 
 
-class BookDelete(DeleteView):
+class BookUpdate(BSModalUpdateView):
+    model = Book
+    form_class = BookForm
+    success_url = reverse_lazy('book_list')
+
+
+class BookDelete(BSModalDeleteView):
     model = Book
     success_url = reverse_lazy('book_list')
 
@@ -39,17 +36,17 @@ class AuthorList(ListView):
     model = Author
 
 
-class AuthorView(BSModalReadView):
+class AuthorView(DetailView):
     model = Author
 
 
-class AuthorCreate(BSModalCreateView):
+class AuthorCreate(CreateView):
     model = Author
     form_class = AuthorForm
     success_url = reverse_lazy('author_list')
 
 
-class AuthorUpdate(BSModalUpdateView):
+class AuthorUpdate(UpdateView):
     model = Author
     form_class = AuthorForm
     success_url = reverse_lazy('author_list')

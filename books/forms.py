@@ -9,7 +9,7 @@ class BookForm(BSModalForm):
         model = Book
         fields = ['name', 'author', 'pages']
 
-class AuthorForm(BSModalForm):
+class AuthorForm(forms.Form):
     class Meta:
         model = Author
         fields = ['name']
