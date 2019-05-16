@@ -30,6 +30,7 @@ class BookUpdate(BSModalUpdateView):
 class BookDelete(BSModalDeleteView):
     model = Book
     success_url = reverse_lazy('book_list')
+    success_message = "Book successfully deleted"
 
 
 class AuthorList(ListView):

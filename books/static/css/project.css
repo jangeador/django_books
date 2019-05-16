@@ -1,0 +1,9 @@
+.input-group .select2-container, .form-group .select2-container {
+  position: relative !important;
+  z-index: 2;
+  float: left !important;
+  width: 100% !important;
+  /*margin-bottom: 0 !important;*/
+  display: table !important;
+  table-layout: fixed !important;
+}

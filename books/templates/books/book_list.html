@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block css %}
+    {{ block.super }}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet"/>
+{% endblock css %}
+
 {% block content %}
     <h1>Books</h1>
+    <button class="create-book btn btn-primary mb-3" type="button" name="button">Add new book</button>
 
     <table class="table table-striped">
         <thead>
@@ -8,9 +15,7 @@
             <th>Name</th>
             <th>Author</th>
             <th>Pages</th>
-            <th>View</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -19,13 +24,68 @@
                 <td>{{ book.name }}</td>
                 <td>{{ book.author }}</td>
                 <td>{{ book.pages }}</td>
-                <td><a href="{% url "book_view" book.id %}">view</a></td>
-                <td><a href="{% url "book_edit" book.id %}">edit</a></td>
-                <td><a href="{% url "book_delete" book.id %}">delete</a></td>
+                <td>
+                    <button type="button" class="read-book btn btn-sm btn-primary"
+                            data-id="{% url 'book_view' book.pk %}">
+                        <span class="fa fa-eye"></span>
+                    </button>
+                    <!-- Update book buttons -->
+                    <button type="button" class="update-book btn btn-sm btn-primary"
+                            data-id="{% url 'book_edit' book.pk %}">
+                        <span class="fa fa-edit"></span>
+                    </button>
+                    <!-- Delete book buttons -->
+                    <button type="button" class="delete-book btn btn-sm btn-danger"
+                            data-id="{% url 'book_delete' book.pk %}">
+                        <span class="fa fa-trash"></span>
+                    </button>
+                </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{% url "book_new" %}">New</a>
 {% endblock content %}
+
+{% block modal %}
+    <div class="modal fade" tabindex="-1" role="dialog" id="modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+    <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
+    <script type="text/javascript">
+        $(function () {
+            // Create book button
+            $(".create-book").modalForm({formURL: "{% url 'book_new' %}"});
+
+            // Update book buttons
+            $(".update-book").each(function () {
+                $(this).modalForm({formURL: $(this).data('id')});
+            });
+
+            // Read book buttons
+            $(".read-book").each(function () {
+                $(this).modalForm({formURL: $(this).data('id')});
+            });
+
+            // Delete book buttons
+            $(".delete-book").each(function () {
+                $(this).modalForm({formURL: $(this).data('id')});
+            });
+
+        });
+    </script>
+
+    <script>
+
+        $('.select').select2({width: "100%"});
+
+    </script>
+
+{% endblock %}

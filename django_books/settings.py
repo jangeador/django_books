@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'bootstrap_modal_forms',
+    'django_select2',
     'books',
 ]
 
