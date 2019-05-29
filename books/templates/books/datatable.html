@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <button class="create-book btn btn-primary mb-3" type="button" name="button">Add new book</button>
+
+    {{ datatable }}
+
+{% endblock content %}
+
+{% block modal %}
+    <div class="modal fade" tabindex="-1" role="dialog" id="modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+    <!-- Load js for initializing tables via their server-side options -->
+    <script type="text/javascript" charset="utf8" src="{% static 'js/datatableview.js' %}"></script>
+    <script type="text/javascript">
+        $(function () {
+            datatableview.initialize($('.datatable'));
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+    <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            var table = $('.datatable').DataTable();
+
+            // Create book button
+            $(".create-book").modalForm({formURL: "{% url 'book_new' %}"});
+
+
+            $('tbody').on('click', 'button', function () {
+                $(this).modalForm({formURL: $(this).data('id')})
+            });
+
+
+
+        });
+
+
+    </script>
+
+    <script>
+
+        $('.select').select2({width: "100%"});
+
+    </script>
+
+
+{% endblock %}

@@ -2,13 +2,19 @@ from bootstrap_modal_forms.generic import BSModalCreateView, BSModalUpdateView, 
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-
+from datatableview.views import DatatableView
+from .datatables import BookDatatable
 from books.forms import BookForm, AuthorForm
 from books.models import Book, Author
 from bootstrap_modal_forms.generic import BSModalCreateView, BSModalUpdateView, BSModalReadView, BSModalDeleteView
 
 class BookList(ListView):
     model = Book
+
+class BookDatatableView(DatatableView):
+    model = Book
+    datatable_class = BookDatatable
+    template_name = 'books/datatable.html'
 
 
 class BookView(BSModalReadView):

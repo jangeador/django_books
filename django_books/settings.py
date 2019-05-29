@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'bootstrap_modal_forms',
     'django_select2',
+    'datatableview',
     'books',
 ]
 

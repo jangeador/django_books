@@ -4,6 +4,7 @@ from . import views
 
 urlpatterns = [
     path('', views.BookList.as_view(), name='book_list'),
+    path('list2', views.BookDatatableView.as_view(), name='book_list2'),
     path('new', views.BookCreate.as_view(), name='book_new'),
     path('view/<int:pk>', views.BookView.as_view(), name='book_view'),
     path('edit/<int:pk>', views.BookUpdate.as_view(), name='book_edit'),
