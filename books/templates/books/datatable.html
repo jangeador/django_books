@@ -25,32 +25,38 @@
 
     <!-- Load js for initializing tables via their server-side options -->
     <script type="text/javascript" charset="utf8" src="{% static 'js/datatableview.js' %}"></script>
-    <script type="text/javascript">
-        $(function () {
-            datatableview.initialize($('.datatable'));
-        });
-    </script>
+    {#    <script type="text/javascript">#}
+    {#        $(function () {#}
+    {#            datatableview.initialize($('.datatable'));#}
+    {#        });#}
+    {#    </script>#}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
     <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
     <script type="text/javascript">
         $(function () {
 
-            var table = $('.datatable').DataTable();
-
             // Create book button
             $(".create-book").modalForm({formURL: "{% url 'book_new' %}"});
-
-
-            $('tbody').on('click', 'button', function () {
-                $(this).modalForm({formURL: $(this).data('id')})
-            });
-
-
 
         });
 
 
+    </script>
+
+    <script type="text/javascript">
+        var opts = {
+            fnInitComplete: function (oSettings, json) {
+
+                $("tbody button").each(function () {
+                    $(this).modalForm({formURL: $(this).data('id')});
+                });
+            }
+        };
+
+        $(function () {
+            var datatable = datatableview.initialize($('.datatable'), opts);
+        });
     </script>
 
     <script>
