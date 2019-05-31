@@ -7,6 +7,7 @@
 
     {{ datatable }}
 
+    <div id="filterInfo">bla</div>
 {% endblock content %}
 
 {% block modal %}
@@ -36,19 +37,19 @@
 
         });
 
-        var opts = {
-            // the data is loaded via ajax so wait for the buttons
-            // to get loaded before trying to wire them with the modalForm
-            fnInitComplete: function (oSettings, json) {
-
-                $("tbody button").each(function () {
-                    $(this).modalForm({formURL: $(this).data('id')});
-                });
-            }
-        };
+        var opts = {};
 
         $(function () {
             var datatable = datatableview.initialize($('.datatable'), opts);
+
+            var table = $(".datatable").DataTable();
+
+            table.on('draw', function () {
+                $("tbody button").each(function () {
+                    $(this).modalForm({formURL: $(this).data('id')});
+                });
+            });
+
         });
     </script>
 

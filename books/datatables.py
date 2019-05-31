@@ -10,6 +10,7 @@ class BookDatatable(Datatable):
 
     class Meta:
         columns = ['name', 'pages', 'author']
+        search_fields = ['name', 'author__name']
 
     def get_actions(self, instance, *args, **kwargs):
         url_kwargs = {'pk': instance.pk}
