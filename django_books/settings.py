@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'bootstrap_modal_forms',
     'django_select2',
     'datatableview',
+    'rest_framework',
     'books',
+    'api',
 ]
 
 MIDDLEWARE = [

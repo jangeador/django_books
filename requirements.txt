@@ -3,3 +3,5 @@ django-crispy-forms
 django-bootstrap-modal-forms
 django_select2
 django-datatable-view
+djangorestframework
+httpie
