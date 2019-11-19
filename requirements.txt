@@ -5,3 +5,4 @@ django_select2
 django-datatable-view
 djangorestframework
 httpie
+django-import-export

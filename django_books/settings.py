@@ -40,8 +40,10 @@ INSTALLED_APPS = [
     'django_select2',
     'datatableview',
     'rest_framework',
+	'import_export',
     'books',
     'api',
+
 ]
 
 MIDDLEWARE = [
