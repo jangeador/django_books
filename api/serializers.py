@@ -3,12 +3,13 @@ from rest_framework import serializers
 from books.models import Book, Author
 
 
-
-
 class AuthorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Author
-        fields = ('id', 'name',)
+        fields = (
+            "id",
+            "name",
+        )
 
 
 class BookSerializer(serializers.ModelSerializer):
@@ -16,4 +17,4 @@ class BookSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Book
-        fields = ('id', 'name', 'pages', 'author')
+        fields = ("id", "name", "pages", "author")

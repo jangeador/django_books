@@ -6,7 +6,7 @@ from books.resources import BookResource
 
 
 class BookAdmin(ImportExportActionModelAdmin):
-	resource_class = BookResource
+    resource_class = BookResource
 
 
 admin.site.register(Book, BookAdmin)

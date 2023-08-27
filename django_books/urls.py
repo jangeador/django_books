@@ -18,9 +18,9 @@ from django.urls import path, include
 from django.views.generic import RedirectView
 
 urlpatterns = [
-    path('', RedirectView.as_view(permanent=False, url='/books/')),
-    path('admin/', admin.site.urls),
-    path('books/', include('books.urls')),
-    path('api/v1/', include('api.urls', namespace='api')),
-    path('select2/', include('django_select2.urls')),
+    path("", RedirectView.as_view(permanent=False, url="/books/")),
+    path("admin/", admin.site.urls),
+    path("books/", include("books.urls")),
+    path("api/v1/", include("api.urls", namespace="api")),
+    path("select2/", include("django_select2.urls")),
 ]
