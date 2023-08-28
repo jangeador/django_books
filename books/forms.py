@@ -11,9 +11,10 @@ class BookForm(BSModalModelForm):
 
     class Meta:
         model = Book
-        fields = ["name", "author", "pages"]
+        fields = ["title", "author", "pages", "country", "language", "link", "year"]
 
     helper = FormHelper()
+    helper.form_tag = False
 
 
 class AuthorForm(forms.ModelForm):
